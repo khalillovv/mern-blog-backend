@@ -33,6 +33,25 @@ export const getAll = async (req, res) => {
   }
 };
 
+export const getPostsByTag = async (req, res) => {
+  const { tag } = req.params;
+
+  try {
+    const posts = await postModel
+      .find({ tags: tag }) // Фильтруем по полю tags
+      .sort({ createdAt: -1 })
+      .populate({ path: "user", select: ["fullName", "avatarUrl"] })
+      .exec();
+
+    res.json(posts);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Не удалось получить статьи с данным тегом",
+    });
+  }
+};
+
 export const getPopularPosts = async (req, res) => {
   try {
     const posts = await postModel
