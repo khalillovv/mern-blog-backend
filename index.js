@@ -73,7 +73,7 @@ app.patch(
 );
 app.delete("/posts/:id", checkAuth, postController.remove);
 
-app.listen(port, (err) => {
+app.listen(process.env.PORT || port, (err) => {
   if (err) {
     return console.log(err);
   }
