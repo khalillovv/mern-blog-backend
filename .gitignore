@@ -1,3 +1,4 @@
 node_modules
 uploads
 config/secret.js
+vercel.json
