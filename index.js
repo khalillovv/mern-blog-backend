@@ -14,7 +14,6 @@ import { checkAuth, handleValidationErrors } from "./utils/index.js";
 import { userController, postController } from "./controllers/index.js";
 
 const app = express();
-// const port = 8080;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -73,12 +72,14 @@ app.patch(
 );
 app.delete("/posts/:id", checkAuth, postController.remove);
 
-const PORT = process.env.PORT;
+const port = process.env.PORT || 8080;
 
-app.listen(8080, (err) => {
+app.listen(port, (err) => {
   if (err) {
     return console.log(err);
   }
 
-  console.log(`Server listening on port ${PORT}`);
+  console.log(
+    `Server listening on port ${port} and starting at http://localhost:${port}`
+  );
 });
