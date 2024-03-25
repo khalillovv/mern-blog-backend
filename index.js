@@ -75,7 +75,7 @@ app.delete("/posts/:id", checkAuth, postController.remove);
 
 const PORT = process.env.PORT;
 
-app.listen(PORT, (err) => {
+app.listen(8080, (err) => {
   if (err) {
     return console.log(err);
   }
